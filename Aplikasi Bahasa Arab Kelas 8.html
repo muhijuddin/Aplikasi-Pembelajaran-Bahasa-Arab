@@ -1,0 +1,1610 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bahasa Arab Kelas 8</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .app-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chapter-button {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            border: none;
+            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .chapter-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+        }
+
+        .chapter-button:active {
+            transform: translateY(-2px);
+        }
+
+        .chapter-number {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .chapter-title-ar {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            direction: rtl;
+        }
+
+        .chapter-subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+            font-style: italic;
+        }
+
+        .evaluasi-button {
+            background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);
+            color: white;
+        }
+
+        .evaluasi-button:hover {
+            background: linear-gradient(135deg, #fbd38d 0%, #f6ad55 100%);
+        }
+
+        .evaluasi-button .chapter-number,
+        .evaluasi-button .chapter-title-ar,
+        .evaluasi-button .chapter-subtitle {
+            color: white;
+        }
+
+        .watermark {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin-top: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .watermark:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .watermark-text {
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .creator-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .creator-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .creator-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.4s ease-out;
+        }
+
+        .creator-title {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .creator-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .creator-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .close-modal {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .close-modal:hover {
+            background: #c53030;
+            transform: translateY(-2px);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .detail-page {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .detail-page.active {
+            display: block;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .detail-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            min-height: 400px;
+        }
+
+        .detail-title {
+            font-size: 3rem;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 1rem;
+            direction: rtl;
+        }
+
+        .detail-subtitle {
+            font-size: 1.8rem;
+            color: #718096;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .detail-description {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .sub-navigation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .sub-nav-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .sub-nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+        }
+
+        .sub-nav-button:active {
+            transform: translateY(-1px);
+        }
+
+        .sub-nav-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .sub-detail-page {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .sub-detail-page.active {
+            display: block;
+        }
+
+        .final-detail-page {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .final-detail-page.active {
+            display: block;
+        }
+
+        .final-detail-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            min-height: 500px;
+        }
+
+        .final-detail-title {
+            font-size: 2.5rem;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .final-detail-subtitle {
+            font-size: 1.5rem;
+            color: #718096;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .final-detail-text {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .media-button {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .media-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+        }
+
+        .quiz-button {
+            background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+            box-shadow: 0 4px 15px rgba(237, 137, 54, 0.3);
+        }
+
+        .quiz-button:hover {
+            background: linear-gradient(135deg, #dd6b20 0%, #c05621 100%);
+            box-shadow: 0 6px 20px rgba(237, 137, 54, 0.4);
+        }
+
+        .media-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .sub-detail-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            min-height: 500px;
+        }
+
+        .sub-detail-title {
+            font-size: 2.5rem;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .sub-detail-subtitle {
+            font-size: 1.5rem;
+            color: #718096;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .sub-detail-text {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-title {
+                font-size: 1.8rem;
+                padding: 1rem;
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chapter-button {
+                padding: 1.5rem 1rem;
+            }
+
+            .detail-content {
+                padding: 2rem;
+            }
+
+            .detail-title {
+                font-size: 2rem;
+            }
+
+            .detail-subtitle {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div id="mainPage">
+   <div class="container">
+    <div class="header">
+     <h1 class="app-title" id="appTitle">BAHASA ARAB KELAS 8 MTSN 6 BOYOLALI</h1>
+    </div>
+    <div class="content">
+     <div class="button-grid"><button class="chapter-button" onclick="showDetail('bab1')">
+       <div class="chapter-number">
+        BAB 1
+       </div>
+       <div class="chapter-title-ar" id="bab1Title">
+        اَلسَّاعَةُ
+       </div>
+       <div class="chapter-subtitle" id="bab1Subtitle">
+        Jam
+       </div></button> <button class="chapter-button" onclick="showDetail('bab2')">
+       <div class="chapter-number">
+        BAB 2
+       </div>
+       <div class="chapter-title-ar" id="bab2Title">
+        يَوْمِيَّاتُنَا
+       </div>
+       <div class="chapter-subtitle" id="bab2Subtitle">
+        Keseharian Kita
+       </div></button> <button class="chapter-button" onclick="showDetail('bab3')">
+       <div class="chapter-number">
+        BAB 3
+       </div>
+       <div class="chapter-title-ar" id="bab3Title">
+        اَلْهِوَايَةُ
+       </div>
+       <div class="chapter-subtitle" id="bab3Subtitle">
+        Hobi
+       </div></button> <button class="chapter-button evaluasi-button" onclick="showDetail('evaluasi')">
+       <div class="chapter-number">
+        📝
+       </div>
+       <div class="chapter-title-ar" id="evaluasiText">
+        EVALUASI
+       </div>
+       <div class="chapter-subtitle">
+        Ujian Tengah Semester
+       </div></button> <button class="chapter-button" onclick="showDetail('bab4')">
+       <div class="chapter-number">
+        BAB 4
+       </div>
+       <div class="chapter-title-ar" id="bab4Title">
+        اَلرِّيَاضَةُ
+       </div>
+       <div class="chapter-subtitle" id="bab4Subtitle">
+        Olahraga
+       </div></button> <button class="chapter-button" onclick="showDetail('bab5')">
+       <div class="chapter-number">
+        BAB 5
+       </div>
+       <div class="chapter-title-ar" id="bab5Title">
+        اَلْمِهْنَةُ
+       </div>
+       <div class="chapter-subtitle" id="bab5Subtitle">
+        Profesi
+       </div></button> <button class="chapter-button" onclick="showDetail('bab6')">
+       <div class="chapter-number">
+        BAB 6
+       </div>
+       <div class="chapter-title-ar" id="bab6Title">
+        عِيَادَةُ الْمَرِيْضَ
+       </div>
+       <div class="chapter-subtitle" id="bab6Subtitle">
+        Menjenguk Orang Sakit
+       </div></button> <button class="chapter-button evaluasi-button" onclick="showDetail('evaluasiAkhir')">
+       <div class="chapter-number">
+        🎓
+       </div>
+       <div class="chapter-title-ar" id="evaluasiAkhirText">
+        EVALUASI AKHIR
+       </div>
+       <div class="chapter-subtitle">
+        Ujian Akhir Semester
+       </div></button>
+     </div>
+     <div class="watermark" onclick="showCreatorModal()">
+      <div class="watermark-text" id="watermarkText">
+       KELOMPOK 6 DESAIN APLIKASI PEMBELAJARAN BAHASA ARAB
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="detailPage" class="detail-page">
+   <div class="container"><button class="back-button" onclick="showMain()">← Kembali ke Halaman Utama</button>
+    <div class="detail-content">
+     <div class="detail-title" id="detailTitle"></div>
+     <div class="detail-subtitle" id="detailSubtitle"></div>
+     <div class="detail-description" id="detailDescription"></div>
+     <div class="sub-navigation" id="subNavigation" style="display: none;"><button class="sub-nav-button" onclick="showSubDetail('tujuan')"> <span class="sub-nav-icon">🎯</span> Tujuan Pembelajaran </button> <button class="sub-nav-button" onclick="showSubDetail('materi')"> <span class="sub-nav-icon">📚</span> Materi Pembelajaran </button> <button class="sub-nav-button" onclick="showSubDetail('latihan')"> <span class="sub-nav-icon">✏️</span> Latihan Soal </button>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="subDetailPage" class="sub-detail-page">
+   <div class="container"><button class="back-button" onclick="showDetailFromSub()">← Kembali ke Halaman Bab</button>
+    <div class="sub-detail-content">
+     <div class="sub-detail-title" id="subDetailTitle"></div>
+     <div class="sub-detail-subtitle" id="subDetailSubtitle"></div>
+     <div class="sub-detail-text" id="subDetailText"></div>
+     <div id="mediaNavigation" class="media-grid" style="display: none;"><button class="media-button" onclick="showFinalDetail('video')"> <span class="media-icon">🎥</span> Video Pembelajaran </button> <button class="media-button" onclick="showFinalDetail('teks')"> <span class="media-icon">📄</span> Teks Materi </button> <button class="media-button" onclick="showFinalDetail('audio')"> <span class="media-icon">🎵</span> Audio Pembelajaran </button> <button class="media-button" onclick="showFinalDetail('gambar')"> <span class="media-icon">🖼️</span> Gambar &amp; Ilustrasi </button>
+     </div>
+     <div id="quizNavigation" class="media-grid" style="display: none;"><button class="media-button quiz-button" onclick="showFinalDetail('quizizz1')"> <span class="media-icon">🎯</span> Quizizz - Kosakata </button> <button class="media-button quiz-button" onclick="showFinalDetail('h5p')"> <span class="media-icon">🧩</span> H5P Interactive </button> <button class="media-button quiz-button" onclick="showFinalDetail('wordwall')"> <span class="media-icon">🎮</span> Wordwall Games </button> <button class="media-button quiz-button" onclick="showFinalDetail('quizizz2')"> <span class="media-icon">🏆</span> Quizizz - Evaluasi </button>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="finalDetailPage" class="final-detail-page">
+   <div class="container"><button class="back-button" onclick="showSubDetailFromFinal()">← Kembali ke Menu Sebelumnya</button>
+    <div class="final-detail-content">
+     <div class="final-detail-title" id="finalDetailTitle"></div>
+     <div class="final-detail-subtitle" id="finalDetailSubtitle"></div>
+     <div class="final-detail-text" id="finalDetailText"></div>
+    </div>
+   </div>
+  </div><!-- Creator Modal -->
+  <div id="creatorModal" class="creator-modal">
+   <div class="creator-content">
+    <h2 class="creator-title">👥 Tim Pembuat</h2>
+    <p style="color: #718096; font-size: 1.1rem; margin-bottom: 1.5rem;">Kelompok 6 - Desain Aplikasi Pembelajaran Bahasa Arab</p>
+    <ul class="creator-list">
+     <li class="creator-item">1. 👨‍💻 Imam Ganteng</li>
+     <li class="creator-item">2. 👩‍💻 Ainun</li>
+     <li class="creator-item">3. 👩‍💻 Naisya</li>
+    </ul><button class="close-modal" onclick="hideCreatorModal()">Tutup</button>
+   </div>
+  </div>
+  <script>
+        const defaultConfig = {
+            app_title: "BAHASA ARAB KELAS 8 MTSN 6 BOYOLALI",
+            bab1_title: "اَلسَّاعَةُ",
+            bab1_subtitle: "Jam",
+            bab2_title: "يَوْمِيَّاتُنَا",
+            bab2_subtitle: "Keseharian Kita",
+            bab3_title: "اَلْهِوَايَةُ",
+            bab3_subtitle: "Hobi",
+            evaluasi_text: "EVALUASI",
+            evaluasi_akhir_text: "EVALUASI AKHIR",
+            bab4_title: "اَلرِّيَاضَةُ",
+            bab4_subtitle: "Olahraga",
+            bab5_title: "اَلْمِهْنَةُ",
+            bab5_subtitle: "Profesi",
+            bab6_title: "عِيَادَةُ الْمَرِيْضَ",
+            bab6_subtitle: "Menjenguk Orang Sakit",
+            watermark_text: "KELOMPOK 6 DESAIN APLIKASI PEMBELAJARAN BAHASA ARAB",
+            background_color: "#667eea",
+            button_color: "#ffffff",
+            text_color: "#2d3748",
+            accent_color: "#f6ad55",
+            font_family: "Segoe UI",
+            font_size: 16
+        };
+
+        let currentChapter = '';
+        let currentSubType = '';
+
+        function showDetail(chapter) {
+            const mainPage = document.getElementById('mainPage');
+            const detailPage = document.getElementById('detailPage');
+            const detailTitle = document.getElementById('detailTitle');
+            const detailSubtitle = document.getElementById('detailSubtitle');
+            const detailDescription = document.getElementById('detailDescription');
+            const subNavigation = document.getElementById('subNavigation');
+
+            currentChapter = chapter;
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+
+            const chapters = {
+                bab1: {
+                    title: config.bab1_title || defaultConfig.bab1_title,
+                    subtitle: config.bab1_subtitle || defaultConfig.bab1_subtitle,
+                    description: 'Pelajari tentang waktu dan jam dalam Bahasa Arab. Materi ini mencakup cara menyebutkan waktu, jam, dan ungkapan-ungkapan terkait waktu.',
+                    hasSubNav: true
+                },
+                bab2: {
+                    title: config.bab2_title || defaultConfig.bab2_title,
+                    subtitle: config.bab2_subtitle || defaultConfig.bab2_subtitle,
+                    description: 'Pelajari kosakata dan percakapan sehari-hari dalam Bahasa Arab. Materi mencakup aktivitas harian dan rutinitas.',
+                    hasSubNav: true
+                },
+                bab3: {
+                    title: config.bab3_title || defaultConfig.bab3_title,
+                    subtitle: config.bab3_subtitle || defaultConfig.bab3_subtitle,
+                    description: 'Pelajari tentang hobi dan kegemaran dalam Bahasa Arab. Materi mencakup berbagai jenis hobi dan cara mengungkapkannya.',
+                    hasSubNav: true
+                },
+                evaluasi: {
+                    title: config.evaluasi_text || defaultConfig.evaluasi_text,
+                    subtitle: 'Ujian Tengah Semester',
+                    description: 'Halaman evaluasi untuk menguji pemahaman materi Bab 1, 2, dan 3. Kerjakan soal-soal dengan teliti!',
+                    hasSubNav: false
+                },
+                evaluasiAkhir: {
+                    title: config.evaluasi_akhir_text || defaultConfig.evaluasi_akhir_text,
+                    subtitle: 'Ujian Akhir Semester',
+                    description: 'Halaman evaluasi akhir untuk menguji pemahaman seluruh materi Bab 1 sampai 6. Ujian komprehensif untuk menilai pencapaian pembelajaran!',
+                    hasSubNav: false
+                },
+                bab4: {
+                    title: config.bab4_title || defaultConfig.bab4_title,
+                    subtitle: config.bab4_subtitle || defaultConfig.bab4_subtitle,
+                    description: 'Pelajari tentang olahraga dan aktivitas fisik dalam Bahasa Arab. Materi mencakup nama-nama olahraga dan ungkapan terkait.',
+                    hasSubNav: true
+                },
+                bab5: {
+                    title: config.bab5_title || defaultConfig.bab5_title,
+                    subtitle: config.bab5_subtitle || defaultConfig.bab5_subtitle,
+                    description: 'Pelajari tentang berbagai profesi dan pekerjaan dalam Bahasa Arab. Materi mencakup nama-nama profesi dan deskripsinya.',
+                    hasSubNav: true
+                },
+                bab6: {
+                    title: config.bab6_title || defaultConfig.bab6_title,
+                    subtitle: config.bab6_subtitle || defaultConfig.bab6_subtitle,
+                    description: 'Pelajari tentang etika dan ungkapan saat menjenguk orang sakit dalam Bahasa Arab. Materi mencakup doa dan percakapan.',
+                    hasSubNav: true
+                }
+            };
+
+            const selectedChapter = chapters[chapter];
+            detailTitle.textContent = selectedChapter.title;
+            detailSubtitle.textContent = selectedChapter.subtitle;
+            detailDescription.textContent = selectedChapter.description;
+
+            // Show or hide sub-navigation based on chapter type
+            if (selectedChapter.hasSubNav) {
+                subNavigation.style.display = 'grid';
+            } else {
+                subNavigation.style.display = 'none';
+            }
+
+            mainPage.style.display = 'none';
+            detailPage.classList.add('active');
+        }
+
+        function showSubDetail(subType) {
+            const detailPage = document.getElementById('detailPage');
+            const subDetailPage = document.getElementById('subDetailPage');
+            const subDetailTitle = document.getElementById('subDetailTitle');
+            const subDetailSubtitle = document.getElementById('subDetailSubtitle');
+            const subDetailText = document.getElementById('subDetailText');
+            const mediaNavigation = document.getElementById('mediaNavigation');
+            const quizNavigation = document.getElementById('quizNavigation');
+
+            currentSubType = subType;
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+
+            const subContent = {
+                tujuan: {
+                    title: '🎯 Tujuan Pembelajaran',
+                    subtitle: getChapterTitle(currentChapter),
+                    text: getTujuanContent(currentChapter),
+                    showMedia: false,
+                    showQuiz: false
+                },
+                materi: {
+                    title: '📚 Materi Pembelajaran',
+                    subtitle: getChapterTitle(currentChapter),
+                    text: 'Pilih jenis media pembelajaran yang ingin Anda akses:',
+                    showMedia: true,
+                    showQuiz: false
+                },
+                latihan: {
+                    title: '✏️ Latihan Soal',
+                    subtitle: getChapterTitle(currentChapter),
+                    text: 'Pilih platform latihan yang ingin Anda gunakan:',
+                    showMedia: false,
+                    showQuiz: true
+                }
+            };
+
+            const selectedContent = subContent[subType];
+            subDetailTitle.textContent = selectedContent.title;
+            subDetailSubtitle.textContent = selectedContent.subtitle;
+            subDetailText.innerHTML = selectedContent.text;
+
+            // Show/hide navigation based on content type
+            if (selectedContent.showMedia) {
+                mediaNavigation.style.display = 'grid';
+                quizNavigation.style.display = 'none';
+            } else if (selectedContent.showQuiz) {
+                mediaNavigation.style.display = 'none';
+                quizNavigation.style.display = 'grid';
+            } else {
+                mediaNavigation.style.display = 'none';
+                quizNavigation.style.display = 'none';
+            }
+
+            detailPage.classList.remove('active');
+            subDetailPage.classList.add('active');
+        }
+
+        function showDetailFromSub() {
+            const detailPage = document.getElementById('detailPage');
+            const subDetailPage = document.getElementById('subDetailPage');
+
+            subDetailPage.classList.remove('active');
+            detailPage.classList.add('active');
+        }
+
+        function showFinalDetail(mediaType) {
+            const subDetailPage = document.getElementById('subDetailPage');
+            const finalDetailPage = document.getElementById('finalDetailPage');
+            const finalDetailTitle = document.getElementById('finalDetailTitle');
+            const finalDetailSubtitle = document.getElementById('finalDetailSubtitle');
+            const finalDetailText = document.getElementById('finalDetailText');
+
+            const mediaContent = {
+                video: {
+                    title: '🎥 Video Pembelajaran',
+                    subtitle: `${getChapterTitle(currentChapter)} - Video`,
+                    text: getVideoContent(currentChapter)
+                },
+                teks: {
+                    title: '📄 Teks Materi',
+                    subtitle: `${getChapterTitle(currentChapter)} - Teks`,
+                    text: getTeksContent(currentChapter)
+                },
+                audio: {
+                    title: '🎵 Audio Pembelajaran',
+                    subtitle: `${getChapterTitle(currentChapter)} - Audio`,
+                    text: getAudioContent(currentChapter)
+                },
+                gambar: {
+                    title: '🖼️ Gambar & Ilustrasi',
+                    subtitle: `${getChapterTitle(currentChapter)} - Visual`,
+                    text: getGambarContent(currentChapter)
+                },
+                quizizz1: {
+                    title: '🎯 Quizizz - Kosakata',
+                    subtitle: `${getChapterTitle(currentChapter)} - Quiz Kosakata`,
+                    text: getQuizizz1Content(currentChapter)
+                },
+                h5p: {
+                    title: '🧩 H5P Interactive',
+                    subtitle: `${getChapterTitle(currentChapter)} - Interaktif`,
+                    text: getH5PContent(currentChapter)
+                },
+                wordwall: {
+                    title: '🎮 Wordwall Games',
+                    subtitle: `${getChapterTitle(currentChapter)} - Games`,
+                    text: getWordwallContent(currentChapter)
+                },
+                quizizz2: {
+                    title: '🏆 Quizizz - Evaluasi',
+                    subtitle: `${getChapterTitle(currentChapter)} - Evaluasi`,
+                    text: getQuizizz2Content(currentChapter)
+                }
+            };
+
+            const selectedContent = mediaContent[mediaType];
+            finalDetailTitle.textContent = selectedContent.title;
+            finalDetailSubtitle.textContent = selectedContent.subtitle;
+            finalDetailText.innerHTML = selectedContent.text;
+
+            subDetailPage.classList.remove('active');
+            finalDetailPage.classList.add('active');
+        }
+
+        function showSubDetailFromFinal() {
+            const subDetailPage = document.getElementById('subDetailPage');
+            const finalDetailPage = document.getElementById('finalDetailPage');
+
+            finalDetailPage.classList.remove('active');
+            subDetailPage.classList.add('active');
+        }
+
+        function getChapterTitle(chapter) {
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+            const titles = {
+                bab1: config.bab1_title || defaultConfig.bab1_title,
+                bab2: config.bab2_title || defaultConfig.bab2_title,
+                bab3: config.bab3_title || defaultConfig.bab3_title,
+                bab4: config.bab4_title || defaultConfig.bab4_title,
+                bab5: config.bab5_title || defaultConfig.bab5_title,
+                bab6: config.bab6_title || defaultConfig.bab6_title
+            };
+            return titles[chapter] || '';
+        }
+
+        function getTujuanContent(chapter) {
+            const tujuan = {
+                bab1: `
+                    <h3>Tujuan Pembelajaran Bab 1 - Jam (اَلسَّاعَةُ)</h3>
+                    <ul>
+                        <li>1. Siswa mampu memahami dan mampu menyebutkan waktu dalam Bahasa Arab dengan benar</li>
+                        <li>2. Siswa dapat menggunakan kosakata terkait waktu dan jam</li>
+                        <li>3. Siswa mampu membuat kalimat sederhana tentang waktu</li>
+                        <li>5. Siswa dapat memahami percakapan sehari-hari tentang waktu</li>
+                    </ul>
+                `,
+                bab2: `
+                    <h3>Tujuan Pembelajaran Bab 2 - Keseharian Kita (يَوْمِيَّاتُنَا)</h3>
+                    <ul>
+                        <li>Siswa mampu menyebutkan aktivitas sehari-hari dalam Bahasa Arab</li>
+                        <li>Siswa dapat menggunakan kosakata tentang rutinitas harian</li>
+                        <li>Siswa mampu menceritakan kegiatan sehari-hari</li>
+                        <li>Siswa dapat memahami teks tentang aktivitas harian</li>
+                    </ul>
+                `,
+                bab3: `
+                    <h3>Tujuan Pembelajaran Bab 3 - Hobi (اَلْهِوَايَةُ)</h3>
+                    <ul>
+                        <li>Siswa mampu menyebutkan berbagai jenis hobi dalam Bahasa Arab</li>
+                        <li>Siswa dapat menggunakan kosakata tentang kegemaran</li>
+                        <li>Siswa mampu menceritakan hobi dan minat mereka</li>
+                        <li>Siswa dapat memahami percakapan tentang hobi</li>
+                    </ul>
+                `,
+                bab4: `
+                    <h3>Tujuan Pembelajaran Bab 4 - Olahraga (اَلرِّيَاضَةُ)</h3>
+                    <ul>
+                        <li>Siswa mampu menyebutkan nama-nama olahraga dalam Bahasa Arab</li>
+                        <li>Siswa dapat menggunakan kosakata tentang aktivitas fisik</li>
+                        <li>Siswa mampu menceritakan kegiatan olahraga</li>
+                        <li>Siswa dapat memahami teks tentang olahraga</li>
+                    </ul>
+                `,
+                bab5: `
+                    <h3>Tujuan Pembelajaran Bab 5 - Profesi (اَلْمِهْنَةُ)</h3>
+                    <ul>
+                        <li>Siswa mampu menyebutkan berbagai profesi dalam Bahasa Arab</li>
+                        <li>Siswa dapat menggunakan kosakata tentang pekerjaan</li>
+                        <li>Siswa mampu mendeskripsikan profesi dan tugasnya</li>
+                        <li>Siswa dapat memahami percakapan tentang pekerjaan</li>
+                    </ul>
+                `,
+                bab6: `
+                    <h3>Tujuan Pembelajaran Bab 6 - Menjenguk Orang Sakit (عِيَادَةُ الْمَرِيْضَ)</h3>
+                    <ul>
+                        <li>Siswa mampu menggunakan ungkapan saat menjenguk orang sakit</li>
+                        <li>Siswa dapat menggunakan kosakata tentang kesehatan</li>
+                        <li>Siswa mampu membaca doa untuk orang sakit</li>
+                        <li>Siswa dapat memahami etika menjenguk dalam Islam</li>
+                    </ul>
+                `
+            };
+            return tujuan[chapter] || '<p>Tujuan pembelajaran akan segera tersedia.</p>';
+        }
+
+        function getMateriContent(chapter) {
+            const materi = {
+                bab1: `
+                    <h3>Materi Pembelajaran - Jam (اَلسَّاعَةُ)</h3>
+                    <h4>Kosakata Utama:</h4>
+                    <ul>
+                        <li>اَلسَّاعَةُ (as-saa'ah) = Jam</li>
+                        <li>اَلْوَقْتُ (al-waqtu) = Waktu</li>
+                        <li>دَقِيْقَةٌ (daqiiqah) = Menit</li>
+                        <li>ثَانِيَةٌ (tsaaniyah) = Detik</li>
+                    </ul>
+                    <h4>Ungkapan Waktu:</h4>
+                    <ul>
+                        <li>كَمِ السَّاعَةُ؟ (Kam as-saa'ah?) = Jam berapa?</li>
+                        <li>اَلسَّاعَةُ الْوَاحِدَةُ (As-saa'atu al-waahidah) = Jam satu</li>
+                        <li>اَلسَّاعَةُ الثَّانِيَةُ (As-saa'atu ats-tsaaniyah) = Jam dua</li>
+                    </ul>
+                `,
+                bab2: `
+                    <h3>Materi Pembelajaran - Keseharian Kita (يَوْمِيَّاتُنَا)</h3>
+                    <h4>Aktivitas Harian:</h4>
+                    <ul>
+                        <li>اِسْتَيْقَظَ (istayqazha) = Bangun tidur</li>
+                        <li>تَوَضَّأَ (tawadhdha') = Berwudhu</li>
+                        <li>صَلَّى (shallaa) = Shalat</li>
+                        <li>أَكَلَ (akala) = Makan</li>
+                        <li>ذَهَبَ إِلَى الْمَدْرَسَةِ (dzahaba ilaa al-madrasah) = Pergi ke sekolah</li>
+                    </ul>
+                `,
+                bab3: `
+                    <h3>Materi Pembelajaran - Hobi (اَلْهِوَايَةُ)</h3>
+                    <h4>Jenis-jenis Hobi:</h4>
+                    <ul>
+                        <li>قِرَاءَةُ الْكُتُبِ (qiraa'atu al-kutub) = Membaca buku</li>
+                        <li>كِتَابَةُ الشِّعْرِ (kitaabatu asy-syi'ri) = Menulis puisi</li>
+                        <li>لَعِبُ كُرَةِ الْقَدَمِ (la'ibu kurati al-qadam) = Main sepak bola</li>
+                        <li>اَلرَّسْمُ (ar-rasmu) = Menggambar</li>
+                    </ul>
+                `,
+                bab4: `
+                    <h3>Materi Pembelajaran - Olahraga (اَلرِّيَاضَةُ)</h3>
+                    <h4>Jenis-jenis Olahraga:</h4>
+                    <ul>
+                        <li>كُرَةُ الْقَدَمِ (kuratu al-qadam) = Sepak bola</li>
+                        <li>كُرَةُ السَّلَّةِ (kuratu as-sallah) = Bola basket</li>
+                        <li>السِّبَاحَةُ (as-sibaahah) = Renang</li>
+                        <li>الْجَرْيُ (al-jaryu) = Lari</li>
+                    </ul>
+                `,
+                bab5: `
+                    <h3>Materi Pembelajaran - Profesi (اَلْمِهْنَةُ)</h3>
+                    <h4>Berbagai Profesi:</h4>
+                    <ul>
+                        <li>مُدَرِّسٌ (mudarris) = Guru</li>
+                        <li>طَبِيْبٌ (thabiib) = Dokter</li>
+                        <li>مُهَنْدِسٌ (muhandis) = Insinyur</li>
+                        <li>تَاجِرٌ (taajir) = Pedagang</li>
+                    </ul>
+                `,
+                bab6: `
+                    <h3>Materi Pembelajaran - Menjenguk Orang Sakit (عِيَادَةُ الْمَرِيْضَ)</h3>
+                    <h4>Ungkapan dan Doa:</h4>
+                    <ul>
+                        <li>كَيْفَ حَالُكَ؟ (Kayfa haaluk?) = Bagaimana kabarmu?</li>
+                        <li>أَسْأَلُ اللهَ لَكَ الشِّفَاءَ (As'alu Allaha laka asy-syifaa') = Saya memohon kesembuhan untukmu kepada Allah</li>
+                        <li>عَافَاكَ اللهُ (Aafaaka Allah) = Semoga Allah menyembuhkanmu</li>
+                    </ul>
+                `
+            };
+            return materi[chapter] || '<p>Materi pembelajaran akan segera tersedia.</p>';
+        }
+
+        function getLatihanContent(chapter) {
+            const latihan = {
+                bab1: `
+                    <h3>Latihan Soal - Jam (اَلسَّاعَةُ)</h3>
+                    <h4>Soal 1:</h4>
+                    <p>Terjemahkan ke dalam Bahasa Arab: "Jam berapa sekarang?"</p>
+                    <p><strong>Jawaban:</strong> كَمِ السَّاعَةُ الآنَ؟</p>
+                    
+                    <h4>Soal 2:</h4>
+                    <p>Sebutkan dalam Bahasa Arab: "Jam tiga"</p>
+                    <p><strong>Jawaban:</strong> اَلسَّاعَةُ الثَّالِثَةُ</p>
+                    
+                    <h4>Soal 3:</h4>
+                    <p>Apa arti dari "دَقِيْقَةٌ"?</p>
+                    <p><strong>Jawaban:</strong> Menit</p>
+                `,
+                bab2: `
+                    <h3>Latihan Soal - Keseharian Kita (يَوْمِيَّاتُنَا)</h3>
+                    <h4>Soal 1:</h4>
+                    <p>Terjemahkan: "Saya bangun tidur pukul 5 pagi"</p>
+                    <p><strong>Jawaban:</strong> اِسْتَيْقَظْتُ فِي السَّاعَةِ الْخَامِسَةِ صَبَاحًا</p>
+                    
+                    <h4>Soal 2:</h4>
+                    <p>Apa arti dari "تَوَضَّأَ"?</p>
+                    <p><strong>Jawaban:</strong> Berwudhu</p>
+                `,
+                bab3: `
+                    <h3>Latihan Soal - Hobi (اَلْهِوَايَةُ)</h3>
+                    <h4>Soal 1:</h4>
+                    <p>Sebutkan 3 hobi dalam Bahasa Arab!</p>
+                    <p><strong>Jawaban:</strong> قِرَاءَةُ الْكُتُبِ، اَلرَّسْمُ، لَعِبُ كُرَةِ الْقَدَمِ</p>
+                    
+                    <h4>Soal 2:</h4>
+                    <p>Apa arti dari "اَلْهِوَايَةُ"?</p>
+                    <p><strong>Jawaban:</strong> Hobi</p>
+                `,
+                bab4: `
+                    <h3>Latihan Soal - Olahraga (اَلرِّيَاضَةُ)</h3>
+                    <h4>Soal 1:</h4>
+                    <p>Terjemahkan: "Saya suka bermain sepak bola"</p>
+                    <p><strong>Jawaban:</strong> أُحِبُّ لَعِبَ كُرَةِ الْقَدَمِ</p>
+                    
+                    <h4>Soal 2:</h4>
+                    <p>Apa Bahasa Arab dari "renang"?</p>
+                    <p><strong>Jawaban:</strong> السِّبَاحَةُ</p>
+                `,
+                bab5: `
+                    <h3>Latihan Soal - Profesi (اَلْمِهْنَةُ)</h3>
+                    <h4>Soal 1:</h4>
+                    <p>Sebutkan 4 profesi dalam Bahasa Arab!</p>
+                    <p><strong>Jawaban:</strong> مُدَرِّسٌ، طَبِيْبٌ، مُهَنْدِسٌ، تَاجِرٌ</p>
+                    
+                    <h4>Soal 2:</h4>
+                    <p>Apa arti dari "طَبِيْبٌ"?</p>
+                    <p><strong>Jawaban:</strong> Dokter</p>
+                `,
+                bab6: `
+                    <h3>Latihan Soal - Menjenguk Orang Sakit (عِيَادَةُ الْمَرِيْضَ)</h3>
+                    <h4>Soal 1:</h4>
+                    <p>Bagaimana cara menanyakan kabar dalam Bahasa Arab?</p>
+                    <p><strong>Jawaban:</strong> كَيْفَ حَالُكَ؟</p>
+                    
+                    <h4>Soal 2:</h4>
+                    <p>Sebutkan doa untuk orang sakit!</p>
+                    <p><strong>Jawaban:</strong> أَسْأَلُ اللهَ لَكَ الشِّفَاءَ</p>
+                `
+            };
+            return latihan[chapter] || '<p>Latihan soal akan segera tersedia.</p>';
+        }
+
+        function getVideoContent(chapter) {
+            const videos = {
+                bab1: `
+                    <h3>Video Pembelajaran - Jam (اَلسَّاعَةُ)</h3>
+                    <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📹 Video 1: Percakapan Tentang Waktu Dalam Bahasa Arab</h4>
+                        <p><strong>Durasi:</strong> 1 menit 20 detik</p>
+                        <p><strong>Instruksi:</strong> Perhatikan Video Dibawah Ini dan Praktekkan dengan temanmu</p>
+                         <video controls style="width:100%; border-radius:10px; margin-top:1rem;">
+							<source src="video/bab 1 materi 1.mp4" type="video/mp4">
+                    </div>
+                `,
+                bab2: `
+                    <h3>Video Pembelajaran - Keseharian Kita (يَوْمِيَّاتُنَا)</h3>
+                    <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📹 Video 1: Aktivitas Harian dalam Bahasa Arab</h4>
+                        <p><strong>Durasi:</strong> 18 menit</p>
+                        <p><strong>Konten:</strong> Kosakata dan ungkapan untuk aktivitas sehari-hari</p>
+                        <button style="background: #e53e3e; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">▶️ Tonton Video</button>
+                    </div>
+                `,
+                bab3: `
+                    <h3>Video Pembelajaran - Hobi (اَلْهِوَايَةُ)</h3>
+                    <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📹 Video 1: Berbagai Jenis Hobi</h4>
+                        <p><strong>Durasi:</strong> 16 menit</p>
+                        <p><strong>Konten:</strong> Mengenal hobi dan cara mengungkapkannya dalam Bahasa Arab</p>
+                        <button style="background: #e53e3e; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">▶️ Tonton Video</button>
+                    </div>
+                `,
+                bab4: `
+                    <h3>Video Pembelajaran - Olahraga (اَلرِّيَاضَةُ)</h3>
+                    <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📹 Video 1: Nama-nama Olahraga</h4>
+                        <p><strong>Durasi:</strong> 14 menit</p>
+                        <p><strong>Konten:</strong> Kosakata olahraga dan aktivitas fisik dalam Bahasa Arab</p>
+                        <button style="background: #e53e3e; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">▶️ Tonton Video</button>
+                    </div>
+                `,
+                bab5: `
+                    <h3>Video Pembelajaran - Profesi (اَلْمِهْنَةُ)</h3>
+                    <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📹 Video 1: Berbagai Profesi</h4>
+                        <p><strong>Durasi:</strong> 17 menit</p>
+                        <p><strong>Konten:</strong> Nama-nama profesi dan deskripsi pekerjaan dalam Bahasa Arab</p>
+                        <button style="background: #e53e3e; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">▶️ Tonton Video</button>
+                    </div>
+                `,
+                bab6: `
+                    <h3>Video Pembelajaran - Menjenguk Orang Sakit (عِيَادَةُ الْمَرِيْضَ)</h3>
+                    <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📹 Video 1: Etika Menjenguk dalam Islam</h4>
+                        <p><strong>Durasi:</strong> 20 menit</p>
+                        <p><strong>Konten:</strong> Adab menjenguk orang sakit dan doa-doa yang dibaca</p>
+                        <button style="background: #e53e3e; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">▶️ Tonton Video</button>
+                    </div>
+                `
+            };
+            return videos[chapter] || '<p>Video pembelajaran akan segera tersedia.</p>';
+        }
+
+        function getTeksContent(chapter) {
+            const teks = {
+                bab1: `
+                    <h3>Teks Materi - Jam (اَلسَّاعَةُ)</h3>
+                    <div style="background: #edf2f7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📖 Materi 1: Pengenalan Waktu (الوقت)</h4>
+                    </div>
+                    <div class="section">
+						<h2>1. Pengertian</h2>
+						<p><span class="arabic">الوقت</span> (<i>al-waqt</i>) artinya <b>waktu</b>.  
+						Dalam bahasa Arab, waktu digunakan untuk menyebut <b>jam, menit, dan hari</b>.</p>
+					</div>
+					<div class="section">
+					<h2>2. Kosa Kata Dasar (مفردات أساسية)</h2>
+					<table>
+						<tr><th>Bahasa Arab</th><th>Latin</th><th>Arti</th></tr>
+						<tr><td class="arabic">ساعة</td><td>sā‘ah</td><td>jam</td></tr>
+						<tr><td class="arabic">دقيقة</td><td>daqīqah</td><td>menit</td></tr>
+						<tr><td class="arabic">ثانية</td><td>thāniyah</td><td>detik</td></tr>
+						<tr><td class="arabic">صباحًا</td><td>ṣabāḥan</td><td>pagi</td></tr>
+						<tr><td class="arabic">مساءً</td><td>masā’an</td><td>sore/malam</td></tr>
+					</table>
+					</div>
+					<div class="section">
+					<h2>3. Angka dalam Bahasa Arab (الأرقام)</h2>
+					<table>
+						<tr><th>Arab</th><th>Latin</th><th>Arti</th></tr>
+						<tr><td class="arabic">واحد</td><td>wāḥid</td><td>satu</td></tr>
+						<tr><td class="arabic">اثنان</td><td>ithnān</td><td>dua</td></tr>
+						<tr><td class="arabic">ثلاثة</td><td>thalāthah</td><td>tiga</td></tr>
+						<tr><td class="arabic">أربعة</td><td>arba‘ah</td><td>empat</td></tr>
+						<tr><td class="arabic">خمسة</td><td>khamsah</td><td>lima</td></tr>
+						<tr><td class="arabic">ستة</td><td>sittah</td><td>enam</td></tr>
+					</table>
+					</div>
+
+					<div class="section">
+					<h2>4. Cara Mengatakan Jam (الساعة)</h2>
+					<p>Struktur umum: <br><b><span class="arabic">الساعة + [angka]</span></b> → as-sā‘atu + [angka]</p>
+					<table>
+						<tr><th>Bahasa Arab</th><th>Latin</th><th>Arti</th></tr>
+						<tr><td class="arabic">الساعة الواحدة</td><td>as-sā‘atu al-wāḥidah</td><td>jam satu</td></tr>
+						<tr><td class="arabic">الساعة الثانية</td><td>as-sā‘atu ats-tsāniyah</td><td>jam dua</td></tr>
+						<tr><td class="arabic">الساعة الثالثة</td><td>as-sā‘atu ats-thālithah</td><td>jam tiga</td></tr>
+					</table>
+					</div>
+
+					<div class="section">
+					<h2>5. Ungkapan Umum tentang Waktu</h2>
+					<table>
+						<tr><th>Bahasa Arab</th><th>Latin</th><th>Arti</th></tr>
+						<tr><td class="arabic">كم الساعة؟</td><td>kam as-sā‘ah?</td><td>Jam berapa sekarang?</td></tr>
+						<tr><td class="arabic">الساعة الآن...</td><td>as-sā‘atu al-ān...</td><td>Sekarang jam...</td></tr>
+						<tr><td class="arabic">في الصباح</td><td>fī aṣ-ṣabāḥ</td><td>pada pagi hari</td></tr>
+						<tr><td class="arabic">في المساء</td><td>fī al-masā’</td><td>pada sore/malam hari</td></tr>
+					</table>
+					</div>
+
+					<div class="section">
+					<h2>6. Contoh Percakapan</h2>
+					<div class="dialogue">
+						<b>A:</b> <span class="arabic">كم الساعة الآن؟</span><br>
+						<i>(Kam as-sā‘ah al-ān?)</i><br>
+						= Jam berapa sekarang?
+					</div>
+					<div class="dialogue">
+						<b>B:</b> <span class="arabic">الساعة السابعة صباحًا.</span><br>
+						<i>(As-sā‘atu as-sābi‘ah ṣabāḥan)</i><br> 
+						= Sekarang jam tujuh pagi.
+					</div>
+					</div>
+                `,
+                bab2: `
+                    <h3>Teks Materi - Keseharian Kita (يَوْمِيَّاتُنَا)</h3>
+                    <div style="background: #edf2f7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📖 Modul 2: Aktivitas Harian</h4>
+                        <p>Panduan lengkap kosakata dan ungkapan untuk menceritakan kegiatan sehari-hari.</p>
+                        <button style="background: #3182ce; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">📄 Baca Modul</button>
+                    </div>
+                `,
+                bab3: `
+                    <h3>Teks Materi - Hobi (اَلْهِوَايَةُ)</h3>
+                    <div style="background: #edf2f7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📖 Modul 3: Hobi dan Minat</h4>
+                        <p>Materi tentang berbagai jenis hobi dan cara mengungkapkan kegemaran dalam Bahasa Arab.</p>
+                        <button style="background: #3182ce; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">📄 Baca Modul</button>
+                    </div>
+                `,
+                bab4: `
+                    <h3>Teks Materi - Olahraga (اَلرِّيَاضَةُ)</h3>
+                    <div style="background: #edf2f7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📖 Modul 4: Dunia Olahraga</h4>
+                        <p>Kosakata lengkap tentang olahraga dan aktivitas fisik dalam Bahasa Arab.</p>
+                        <button style="background: #3182ce; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">📄 Baca Modul</button>
+                    </div>
+                `,
+                bab5: `
+                    <h3>Teks Materi - Profesi (اَلْمِهْنَةُ)</h3>
+                    <div style="background: #edf2f7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📖 Modul 5: Dunia Kerja</h4>
+                        <p>Panduan lengkap tentang berbagai profesi dan deskripsi pekerjaan dalam Bahasa Arab.</p>
+                        <button style="background: #3182ce; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">📄 Baca Modul</button>
+                    </div>
+                `,
+                bab6: `
+                    <h3>Teks Materi - Menjenguk Orang Sakit (عِيَادَةُ الْمَرِيْضَ)</h3>
+                    <div style="background: #edf2f7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>📖 Modul 6: Etika Menjenguk</h4>
+                        <p>Materi tentang adab menjenguk orang sakit dalam Islam dan ungkapan-ungkapan yang tepat.</p>
+                        <button style="background: #3182ce; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">📄 Baca Modul</button>
+                    </div>
+                `
+            };
+            return teks[chapter] || '<p>Teks materi akan segera tersedia.</p>';
+        }
+
+        function getAudioContent(chapter) {
+            const audio = {
+                bab1: `
+                    <h3>Audio Pembelajaran - Jam (اَلسَّاعَةُ)</h3>
+                    <div style="background: #f0fff4; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🎵 Audio 1: Percakapan Dalam Bahasa Arab Tentang Jam</h4>
+                        <p><strong>Instruksi:</strong> dengarkan audio dibawah ini dengan seksama</p>
+						 <audio controls style="width:100%; margin-top:1rem;">
+							<source src="audio/Audio bab 1.mp3" type="audio/mpeg">
+                    </div>
+                    
+                `,
+                bab2: `
+                    <h3>Audio Pembelajaran - Keseharian Kita (يَوْمِيَّاتُنَا)</h3>
+                    <div style="background: #f0fff4; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🎵 Audio 1: Kosakata Aktivitas Harian</h4>
+                        <p><strong>Durasi:</strong> 12 menit</p>
+                        <p>Pelafalan kosakata aktivitas sehari-hari dalam Bahasa Arab</p>
+                        <button style="background: #38a169; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">🔊 Putar Audio</button>
+                    </div>
+                `,
+                bab3: `
+                    <h3>Audio Pembelajaran - Hobi (اَلْهِوَايَةُ)</h3>
+                    <div style="background: #f0fff4; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🎵 Audio 1: Kosakata Hobi</h4>
+                        <p><strong>Durasi:</strong> 9 menit</p>
+                        <p>Pelafalan nama-nama hobi dalam Bahasa Arab</p>
+                        <button style="background: #38a169; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">🔊 Putar Audio</button>
+                    </div>
+                `,
+                bab4: `
+                    <h3>Audio Pembelajaran - Olahraga (اَلرِّيَاضَةُ)</h3>
+                    <div style="background: #f0fff4; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🎵 Audio 1: Kosakata Olahraga</h4>
+                        <p><strong>Durasi:</strong> 11 menit</p>
+                        <p>Pelafalan nama-nama olahraga dalam Bahasa Arab</p>
+                        <button style="background: #38a169; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">🔊 Putar Audio</button>
+                    </div>
+                `,
+                bab5: `
+                    <h3>Audio Pembelajaran - Profesi (اَلْمِهْنَةُ)</h3>
+                    <div style="background: #f0fff4; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🎵 Audio 1: Kosakata Profesi</h4>
+                        <p><strong>Durasi:</strong> 13 menit</p>
+                        <p>Pelafalan nama-nama profesi dalam Bahasa Arab</p>
+                        <button style="background: #38a169; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">🔊 Putar Audio</button>
+                    </div>
+                `,
+                bab6: `
+                    <h3>Audio Pembelajaran - Menjenguk Orang Sakit (عِيَادَةُ الْمَرِيْضَ)</h3>
+                    <div style="background: #f0fff4; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🎵 Audio 1: Doa untuk Orang Sakit</h4>
+                        <p><strong>Durasi:</strong> 15 menit</p>
+                        <p>Pelafalan doa-doa dan ungkapan saat menjenguk orang sakit</p>
+                        <button style="background: #38a169; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">🔊 Putar Audio</button>
+                    </div>
+                `
+            };
+            return audio[chapter] || '<p>Audio pembelajaran akan segera tersedia.</p>';
+        }
+
+        function getGambarContent(chapter) {
+            const gambar = {
+                bab1: `
+                    <h3>Gambar & Ilustrasi - Jam (اَلسَّاعَةُ)</h3>
+                    <div style="background: #fef5e7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🖼️ Infografis: Jam dalam Bahasa Arab</h4>
+                        <img src="gambar/bab 1 materi 2.jpeg" alt="Jam dalam Bahasa Arab" style="width:100%; border-radius:10px; margin-top:1rem; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+                    </div>
+                    
+                `,
+                bab2: `
+                    <h3>Gambar & Ilustrasi - Keseharian Kita (يَوْمِيَّاتُنَا)</h3>
+                    <div style="background: #fef5e7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🖼️ Ilustrasi Aktivitas Harian</h4>
+                        <p>Gambar-gambar aktivitas sehari-hari dengan keterangan dalam Bahasa Arab</p>
+                        <button style="background: #dd6b20; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">👁️ Lihat Gambar</button>
+                    </div>
+                `,
+                bab3: `
+                    <h3>Gambar & Ilustrasi - Hobi (اَلْهِوَايَةُ)</h3>
+                    <div style="background: #fef5e7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🖼️ Koleksi Gambar Hobi</h4>
+                        <p>Ilustrasi berbagai jenis hobi dengan nama dalam Bahasa Arab</p>
+                        <button style="background: #dd6b20; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">👁️ Lihat Gambar</button>
+                    </div>
+                `,
+                bab4: `
+                    <h3>Gambar & Ilustrasi - Olahraga (اَلرِّيَاضَةُ)</h3>
+                    <div style="background: #fef5e7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🖼️ Poster Olahraga</h4>
+                        <p>Gambar berbagai jenis olahraga dengan nama dalam Bahasa Arab</p>
+                        <button style="background: #dd6b20; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">👁️ Lihat Gambar</button>
+                    </div>
+                `,
+                bab5: `
+                    <h3>Gambar & Ilustrasi - Profesi (اَلْمِهْنَةُ)</h3>
+                    <div style="background: #fef5e7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🖼️ Ilustrasi Profesi</h4>
+                        <p>Gambar berbagai profesi dengan deskripsi dalam Bahasa Arab</p>
+                        <button style="background: #dd6b20; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">👁️ Lihat Gambar</button>
+                    </div>
+                `,
+                bab6: `
+                    <h3>Gambar & Ilustrasi - Menjenguk Orang Sakit (عِيَادَةُ الْمَرِيْضَ)</h3>
+                    <div style="background: #fef5e7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                        <h4>🖼️ Ilustrasi Etika Menjenguk</h4>
+                        <p>Gambar yang menunjukkan adab dan etika menjenguk orang sakit</p>
+                        <button style="background: #dd6b20; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">👁️ Lihat Gambar</button>
+                    </div>
+                `
+            };
+            return gambar[chapter] || '<p>Gambar dan ilustrasi akan segera tersedia.</p>';
+        }
+
+        function getQuizizz1Content(chapter) {
+            return `
+                <h3>🎯 Quizizz - Pilihan Ganda${getChapterTitle(chapter)}</h3>
+                <div style="background: #e6fffa; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                    <h4>Quiz Kosakata Dasar</h4>
+                    <p><strong>Jumlah Soal:</strong> 15 pertanyaan</p>
+                    <p><strong>Waktu:</strong> 10 menit</p>
+                    <p><strong>Tipe:</strong> Pilihan ganda dan mencocokkan</p>
+                    <p>Quiz interaktif untuk menguji pemahaman kosakata dasar dalam bab ini.</p>
+                    <p>Klik tombol di bawah untuk mulai latihan di Quizizz.</p>
+					<a href="https://quizizz.com/join/https://wayground.com/join?gc=26685170" target="_blank"
+						style="display:inline-block; background:#319795; color:white; 
+							padding:0.75rem 1.5rem; border-radius:8px; text-decoration:none; 
+							font-weight:600; margin-top:1rem;">🎯 Mulai Quizizz</a>
+                </div>
+            `;
+        }
+
+        function getH5PContent(chapter) {
+            return `
+                <h3>🧩 H5P Interactive - ${getChapterTitle(chapter)}</h3>
+                <div style="background: #f7fafc; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                    <h4>Aktivitas Interaktif</h4>
+                    <p><strong>Jenis:</strong> Drag & Drop, Fill in the Blanks, Memory Game</p>
+                    <p><strong>Durasi:</strong> 15-20 menit</p>
+                    <p>Berbagai aktivitas interaktif untuk memperdalam pemahaman materi dengan cara yang menyenangkan.</p>
+                    <p>Klik tombol berikut untuk membuka aktivitas interaktif:</p>
+					<a href="https://h5p.org/node/https://app.lumi.education/h5p/assa039ah-dlytr8" target="_blank"
+						style="display:inline-block; background:#4299e1; color:white; 
+							padding:0.75rem 1.5rem; border-radius:8px; text-decoration:none; 
+							font-weight:600; margin-top:1rem;">🧩 Mulai H5P</a>
+                </div>
+            `;
+        }
+
+        function getWordwallContent(chapter) {
+            return `
+                <h3>🎮 Wordwall Games - ${getChapterTitle(chapter)}</h3>
+                <div style="background: #fef5e7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                    <h4>Game Pembelajaran</h4>
+                    <p><strong>Jenis Game:</strong> Word Search, Crossword, Match Up, Spin the Wheel</p>
+                    <p><strong>Level:</strong> Pemula hingga Menengah</p>
+                    <p>Kumpulan game edukatif yang membuat belajar Bahasa Arab menjadi lebih seru dan menyenangkan.</p>
+                    <p>Klik tombol di bawah untuk bermain di Wordwall:</p>
+					<a href="https://wordwall.net/play/https://wordwall.net/play/99200/191/350" target="_blank"
+						style="display:inline-block; background:#ed8936; color:white; 
+							padding:0.75rem 1.5rem; border-radius:8px; text-decoration:none; 
+							font-weight:600; margin-top:1rem;">🎮 Main di Wordwall</a>
+                </div>
+            `;
+        }
+
+        function getQuizizz2Content(chapter) {
+            return `
+                <h3>🏆 Quizizz - Isian Singkat ${getChapterTitle(chapter)}</h3>
+                <div style="background: #fed7d7; padding: 2rem; border-radius: 10px; margin: 1rem 0;">
+                    <h4>Quiz Evaluasi Komprehensif</h4>
+                    <p><strong>Jumlah Soal:</strong> 25 pertanyaan</p>
+                    <p><strong>Waktu:</strong> 20 menit</p>
+                    <p><strong>Tipe:</strong> Pilihan ganda, True/False, dan Essay pendek</p>
+                    <p>Quiz evaluasi menyeluruh untuk mengukur pemahaman siswa terhadap seluruh materi dalam bab ini.</p>
+                    <p>Klik tombol di bawah untuk mulai latihan di Quizizz.</p>
+					<a href="https://quizizz.com/join/https://wayground.com/join?gc=26685170" target="_blank"
+						style="display:inline-block; background:#319795; color:white; 
+							padding:0.75rem 1.5rem; border-radius:8px; text-decoration:none; 
+							font-weight:600; margin-top:1rem;">🎯 Mulai Quizizz</a>
+                </div>
+            `;
+        }
+
+        function showMain() {
+            const mainPage = document.getElementById('mainPage');
+            const detailPage = document.getElementById('detailPage');
+
+            detailPage.classList.remove('active');
+            mainPage.style.display = 'block';
+        }
+
+        function showCreatorModal() {
+            const modal = document.getElementById('creatorModal');
+            modal.classList.add('active');
+        }
+
+        function hideCreatorModal() {
+            const modal = document.getElementById('creatorModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('creatorModal');
+            if (event.target === modal) {
+                hideCreatorModal();
+            }
+        });
+
+        async function onConfigChange(config) {
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseFontStack = 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif';
+            const baseSize = config.font_size || defaultConfig.font_size;
+
+            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+            document.body.style.background = `linear-gradient(135deg, ${config.background_color || defaultConfig.background_color} 0%, #764ba2 100%)`;
+
+            document.getElementById('appTitle').textContent = config.app_title || defaultConfig.app_title;
+            document.getElementById('appTitle').style.fontSize = `${baseSize * 2.5}px`;
+
+            document.getElementById('bab1Title').textContent = config.bab1_title || defaultConfig.bab1_title;
+            document.getElementById('bab1Subtitle').textContent = config.bab1_subtitle || defaultConfig.bab1_subtitle;
+
+            document.getElementById('bab2Title').textContent = config.bab2_title || defaultConfig.bab2_title;
+            document.getElementById('bab2Subtitle').textContent = config.bab2_subtitle || defaultConfig.bab2_subtitle;
+
+            document.getElementById('bab3Title').textContent = config.bab3_title || defaultConfig.bab3_title;
+            document.getElementById('bab3Subtitle').textContent = config.bab3_subtitle || defaultConfig.bab3_subtitle;
+
+            document.getElementById('evaluasiText').textContent = config.evaluasi_text || defaultConfig.evaluasi_text;
+
+            document.getElementById('evaluasiAkhirText').textContent = config.evaluasi_akhir_text || defaultConfig.evaluasi_akhir_text;
+
+            document.getElementById('bab4Title').textContent = config.bab4_title || defaultConfig.bab4_title;
+            document.getElementById('bab4Subtitle').textContent = config.bab4_subtitle || defaultConfig.bab4_subtitle;
+
+            document.getElementById('bab5Title').textContent = config.bab5_title || defaultConfig.bab5_title;
+            document.getElementById('bab5Subtitle').textContent = config.bab5_subtitle || defaultConfig.bab5_subtitle;
+
+            document.getElementById('bab6Title').textContent = config.bab6_title || defaultConfig.bab6_title;
+            document.getElementById('bab6Subtitle').textContent = config.bab6_subtitle || defaultConfig.bab6_subtitle;
+
+            document.getElementById('watermarkText').textContent = config.watermark_text || defaultConfig.watermark_text;
+
+            const chapterTitles = document.querySelectorAll('.chapter-title-ar');
+            chapterTitles.forEach(title => {
+                title.style.fontSize = `${baseSize * 1.8}px`;
+                title.style.color = config.text_color || defaultConfig.text_color;
+            });
+
+            const chapterSubtitles = document.querySelectorAll('.chapter-subtitle');
+            chapterSubtitles.forEach(subtitle => {
+                subtitle.style.fontSize = `${baseSize * 1.1}px`;
+            });
+
+            const buttons = document.querySelectorAll('.chapter-button:not(.evaluasi-button)');
+            buttons.forEach(button => {
+                button.style.background = `linear-gradient(135deg, ${config.button_color || defaultConfig.button_color} 0%, #f0f0f0 100%)`;
+            });
+
+            const evaluasiButton = document.querySelector('.evaluasi-button');
+            if (evaluasiButton) {
+                evaluasiButton.style.background = `linear-gradient(135deg, ${config.accent_color || defaultConfig.accent_color} 0%, #ed8936 100%)`;
+            }
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig: defaultConfig,
+                onConfigChange: onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.background_color || defaultConfig.background_color,
+                            set: (value) => {
+                                config.background_color = value;
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.button_color || defaultConfig.button_color,
+                            set: (value) => {
+                                config.button_color = value;
+                                window.elementSdk.setConfig({ button_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.text_color || defaultConfig.text_color,
+                            set: (value) => {
+                                config.text_color = value;
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.accent_color || defaultConfig.accent_color,
+                            set: (value) => {
+                                config.accent_color = value;
+                                window.elementSdk.setConfig({ accent_color: value });
+                            }
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: {
+                        get: () => config.font_family || defaultConfig.font_family,
+                        set: (value) => {
+                            config.font_family = value;
+                            window.elementSdk.setConfig({ font_family: value });
+                        }
+                    },
+                    fontSizeable: {
+                        get: () => config.font_size || defaultConfig.font_size,
+                        set: (value) => {
+                            config.font_size = value;
+                            window.elementSdk.setConfig({ font_size: value });
+                        }
+                    }
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["app_title", config.app_title || defaultConfig.app_title],
+                    ["bab1_title", config.bab1_title || defaultConfig.bab1_title],
+                    ["bab1_subtitle", config.bab1_subtitle || defaultConfig.bab1_subtitle],
+                    ["bab2_title", config.bab2_title || defaultConfig.bab2_title],
+                    ["bab2_subtitle", config.bab2_subtitle || defaultConfig.bab2_subtitle],
+                    ["bab3_title", config.bab3_title || defaultConfig.bab3_title],
+                    ["bab3_subtitle", config.bab3_subtitle || defaultConfig.bab3_subtitle],
+                    ["evaluasi_text", config.evaluasi_text || defaultConfig.evaluasi_text],
+                    ["evaluasi_akhir_text", config.evaluasi_akhir_text || defaultConfig.evaluasi_akhir_text],
+                    ["bab4_title", config.bab4_title || defaultConfig.bab4_title],
+                    ["bab4_subtitle", config.bab4_subtitle || defaultConfig.bab4_subtitle],
+                    ["bab5_title", config.bab5_title || defaultConfig.bab5_title],
+                    ["bab5_subtitle", config.bab5_subtitle || defaultConfig.bab5_subtitle],
+                    ["bab6_title", config.bab6_title || defaultConfig.bab6_title],
+                    ["bab6_subtitle", config.bab6_subtitle || defaultConfig.bab6_subtitle],
+                    ["watermark_text", config.watermark_text || defaultConfig.watermark_text]
+                ])
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99b621fe5089d8ca',t:'MTc2MjYxNjA0OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
